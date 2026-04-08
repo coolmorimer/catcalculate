@@ -1,0 +1,15 @@
+## Build artifacts
+bin/
+obj/
+build/output/
+
+## .NET / Visual Studio
+*.user
+*.suo
+.vs/
+*.swp
+*.sln.docstates
+
+## OS
+.DS_Store
+Thumbs.db
