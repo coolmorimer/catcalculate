@@ -111,7 +111,7 @@
         </Setter>
     </Style>
 
-    <!-- Number Button (digit keys 0–9, decimal) -->
+    <!-- Number Button (digit keys 0-9, decimal) -->
     <Style x:Key="NumberButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
         <Setter Property="Background" Value="{StaticResource CatCreamBrush}"/>
         <Style.Triggers>
@@ -121,7 +121,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Operator Button (+, −, ×, ÷) -->
+    <!-- Operator Button (+, -, x, /) -->
     <Style x:Key="OperatorButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
         <Setter Property="Background" Value="{StaticResource CatLavenderBrush}"/>
         <Setter Property="Foreground" Value="#5A3080"/>
@@ -132,7 +132,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Function Button (C, CE, ±, ⌫, %) -->
+    <!-- Function Button (C, CE, +/-, backspace, %) -->
     <Style x:Key="FunctionButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
         <Setter Property="Background" Value="{StaticResource CatPeachBrush}"/>
         <Setter Property="Foreground" Value="#803020"/>
@@ -261,4 +261,3 @@
     </Style>
 
 </ResourceDictionary>
-

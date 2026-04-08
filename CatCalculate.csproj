@@ -12,6 +12,13 @@
     <Version>1.0.0</Version>
     <AssemblyTitle>CatCalculate — Cat-Themed Calculator</AssemblyTitle>
     <Description>A cute cat-themed desktop calculator built with WPF.</Description>
+
+    <!-- Single-file self-contained publish settings -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
   <!-- App.xaml lives in a subdirectory, so we must tell the SDK explicitly. -->

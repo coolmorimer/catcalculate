@@ -2,11 +2,14 @@
 bin/
 obj/
 publish/
+build/output/
 
 # IDE & OS files
 .vs/
 *.user
 *.suo
+*.swp
+*.sln.docstates
 .DS_Store
 Thumbs.db
 
