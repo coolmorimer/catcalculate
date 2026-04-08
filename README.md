@@ -89,6 +89,50 @@ catcalculate/
     └── build.yml              # CI: build + publish EXE on every push to main
 ```
 
+## Troubleshooting
+
+### "No .NET SDKs were found" / build fails immediately
+
+If the build script prints a message like:
+
+```
+No .NET SDKs were found.
+Download a .NET SDK: https://aka.ms/dotnet-download
+```
+
+it means the .NET SDK is either not installed or not on your `PATH`.
+
+**Step 1 – Check whether the SDK is installed**
+
+Open a new PowerShell or Command Prompt window and run:
+
+```powershell
+dotnet --info
+```
+
+- If the command is recognised you will see a list of installed SDKs under the **".NET SDKs installed"** heading.  
+  Make sure at least one SDK with a version starting with **8.x** is listed.
+- If you get `'dotnet' is not recognized as an internal or external command` the SDK is not installed (or not on your `PATH`).
+
+**Step 2 – Install the .NET 8 SDK**
+
+Download and run the official installer for Windows:
+
+👉 [Download .NET 8 SDK for Windows (x64)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
+Select the **SDK** installer (not the Runtime) that matches your machine (x64 for most modern PCs).
+
+**Step 3 – Restart your terminal and retry**
+
+After installation, close all open PowerShell / Command Prompt windows, open a fresh one, and run `dotnet --info` again to confirm the SDK appears in the list.  
+Then re-run the build script:
+
+```powershell
+.\build\publish.ps1
+```
+
+---
+
 ## License
 
 MIT
