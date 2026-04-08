@@ -1,0 +1,15 @@
+# Build output
+bin/
+obj/
+publish/
+
+# IDE & OS files
+.vs/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+packages/

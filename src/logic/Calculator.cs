@@ -179,5 +179,18 @@ namespace CatCalculate.Logic
             _currentValue = -_currentValue;
             ResetInputState();
         }
+
+        /// <summary>
+        /// Directly sets the current value.
+        /// Used by the UI for backspace and clear-entry operations.
+        /// </summary>
+        /// <param name="value">The value to set as the current operand.</param>
+        public void SetCurrentValue(double value)
+        {
+            _currentValue = value;
+            _hasDecimal = value != Math.Floor(value);
+            _decimalPlaces = 0;
+            _isNewInput = false;
+        }
     }
 }
