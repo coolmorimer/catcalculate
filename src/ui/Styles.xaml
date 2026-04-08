@@ -1,0 +1,260 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ============================================================
+         Cat-Themed Color Palette
+         ============================================================ -->
+    <Color x:Key="CatCreamColor">#FFF8F0</Color>
+    <Color x:Key="CatPinkColor">#FFB7C5</Color>
+    <Color x:Key="CatPinkDarkColor">#FF8FAF</Color>
+    <Color x:Key="CatLavenderColor">#E8D5F5</Color>
+    <Color x:Key="CatLavenderDarkColor">#C9A8E0</Color>
+    <Color x:Key="CatPeachColor">#FFD4B8</Color>
+    <Color x:Key="CatPeachDarkColor">#FFBA8C</Color>
+    <Color x:Key="CatMintColor">#C8F0E0</Color>
+    <Color x:Key="CatMintDarkColor">#90D8B8</Color>
+    <Color x:Key="CatNavyColor">#2E2040</Color>
+    <Color x:Key="CatSoftGrayColor">#EDE8F0</Color>
+    <Color x:Key="CatWhiskerColor">#C4B8CC</Color>
+    <Color x:Key="DisplayBgColor">#1E1428</Color>
+    <Color x:Key="DisplayTextColor">#F8F0FF</Color>
+    <Color x:Key="EqualsBgColor">#FF8FAF</Color>
+    <Color x:Key="EqualsBgDarkColor">#E06080</Color>
+
+    <!-- Solid Color Brushes -->
+    <SolidColorBrush x:Key="CatCreamBrush"        Color="{StaticResource CatCreamColor}"/>
+    <SolidColorBrush x:Key="CatPinkBrush"         Color="{StaticResource CatPinkColor}"/>
+    <SolidColorBrush x:Key="CatPinkDarkBrush"     Color="{StaticResource CatPinkDarkColor}"/>
+    <SolidColorBrush x:Key="CatLavenderBrush"     Color="{StaticResource CatLavenderColor}"/>
+    <SolidColorBrush x:Key="CatLavenderDarkBrush" Color="{StaticResource CatLavenderDarkColor}"/>
+    <SolidColorBrush x:Key="CatPeachBrush"        Color="{StaticResource CatPeachColor}"/>
+    <SolidColorBrush x:Key="CatPeachDarkBrush"    Color="{StaticResource CatPeachDarkColor}"/>
+    <SolidColorBrush x:Key="CatMintBrush"         Color="{StaticResource CatMintColor}"/>
+    <SolidColorBrush x:Key="CatMintDarkBrush"     Color="{StaticResource CatMintDarkColor}"/>
+    <SolidColorBrush x:Key="CatNavyBrush"         Color="{StaticResource CatNavyColor}"/>
+    <SolidColorBrush x:Key="CatSoftGrayBrush"     Color="{StaticResource CatSoftGrayColor}"/>
+    <SolidColorBrush x:Key="CatWhiskerBrush"      Color="{StaticResource CatWhiskerColor}"/>
+    <SolidColorBrush x:Key="DisplayBgBrush"       Color="{StaticResource DisplayBgColor}"/>
+    <SolidColorBrush x:Key="DisplayTextBrush"     Color="{StaticResource DisplayTextColor}"/>
+
+    <!-- Window Background Gradient -->
+    <LinearGradientBrush x:Key="WindowBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FFF0F8" Offset="0"/>
+        <GradientStop Color="#F0E8FF" Offset="0.5"/>
+        <GradientStop Color="#FFE8F0" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Display Gradient Background -->
+    <LinearGradientBrush x:Key="DisplayGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1E1428" Offset="0"/>
+        <GradientStop Color="#2E2040" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- ============================================================
+         Drop Shadow Effect
+         ============================================================ -->
+    <DropShadowEffect x:Key="SoftShadow"
+                      BlurRadius="8"
+                      ShadowDepth="2"
+                      Direction="270"
+                      Color="#80C4B8CC"
+                      Opacity="0.4"/>
+
+    <DropShadowEffect x:Key="DisplayShadow"
+                      BlurRadius="12"
+                      ShadowDepth="0"
+                      Direction="270"
+                      Color="#FF8FAF"
+                      Opacity="0.3"/>
+
+    <!-- ============================================================
+         Base Button Style
+         ============================================================ -->
+    <Style x:Key="CatButtonBase" TargetType="Button">
+        <Setter Property="FontFamily"    Value="Segoe UI, Arial"/>
+        <Setter Property="FontSize"      Value="18"/>
+        <Setter Property="FontWeight"    Value="SemiBold"/>
+        <Setter Property="Foreground"    Value="{StaticResource CatNavyBrush}"/>
+        <Setter Property="Cursor"        Value="Hand"/>
+        <Setter Property="Margin"        Value="5"/>
+        <Setter Property="Effect"        Value="{StaticResource SoftShadow}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            CornerRadius="16"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="12"
+                                                      ShadowDepth="3"
+                                                      Direction="270"
+                                                      Color="#C4B8CC"
+                                                      Opacity="0.6"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="RenderTransformOrigin"
+                                    Value="0.5,0.5"/>
+                            <Setter TargetName="ButtonBorder"
+                                    Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.96" ScaleY="0.96"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Number Button (digit keys 0–9, decimal) -->
+    <Style x:Key="NumberButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
+        <Setter Property="Background" Value="{StaticResource CatCreamBrush}"/>
+        <Setter Property="Tag"        Value="{StaticResource CatPinkBrush}"/>
+    </Style>
+
+    <!-- Operator Button (+, −, ×, ÷, %) -->
+    <Style x:Key="OperatorButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
+        <Setter Property="Background" Value="{StaticResource CatLavenderBrush}"/>
+        <Setter Property="Tag"        Value="{StaticResource CatLavenderDarkBrush}"/>
+        <Setter Property="Foreground" Value="#5A3080"/>
+    </Style>
+
+    <!-- Function Button (C, CE, ±, backspace) -->
+    <Style x:Key="FunctionButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
+        <Setter Property="Background" Value="{StaticResource CatPeachBrush}"/>
+        <Setter Property="Tag"        Value="{StaticResource CatPeachDarkBrush}"/>
+        <Setter Property="Foreground" Value="#803020"/>
+    </Style>
+
+    <!-- Equals Button -->
+    <Style x:Key="EqualsButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource CatPinkColor}"    Offset="0"/>
+                    <GradientStop Color="{StaticResource EqualsBgColor}"   Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Tag">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource EqualsBgColor}"     Offset="0"/>
+                    <GradientStop Color="{StaticResource EqualsBgDarkColor}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize"   Value="22"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="3"
+                                  Direction="270" Color="#FF8FAF" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ============================================================
+         Paw-print decorative path data (reusable geometry)
+         Single paw = central pad + 4 toe pads arranged above it
+         ============================================================ -->
+    <PathGeometry x:Key="PawPrintGeometry">
+        <!-- Central pad (large rounded rectangle) -->
+        <PathFigure StartPoint="12,22" IsClosed="True">
+            <BezierSegment Point1="6,22"  Point2="4,28"  Point3="4,34"/>
+            <BezierSegment Point1="4,40"  Point2="6,44"  Point3="12,44"/>
+            <BezierSegment Point1="18,44" Point2="20,40" Point3="20,34"/>
+            <BezierSegment Point1="20,28" Point2="18,22" Point3="12,22"/>
+        </PathFigure>
+        <!-- Top-left toe -->
+        <PathFigure StartPoint="3,15" IsClosed="True">
+            <BezierSegment Point1="0,15"  Point2="0,19"  Point3="3,19"/>
+            <BezierSegment Point1="6,19"  Point2="6,15"  Point3="3,15"/>
+        </PathFigure>
+        <!-- Top-center-left toe -->
+        <PathFigure StartPoint="8,10" IsClosed="True">
+            <BezierSegment Point1="5,10"  Point2="5,14"  Point3="8,14"/>
+            <BezierSegment Point1="11,14" Point2="11,10" Point3="8,10"/>
+        </PathFigure>
+        <!-- Top-center-right toe -->
+        <PathFigure StartPoint="16,10" IsClosed="True">
+            <BezierSegment Point1="13,10" Point2="13,14" Point3="16,14"/>
+            <BezierSegment Point1="19,14" Point2="19,10" Point3="16,10"/>
+        </PathFigure>
+        <!-- Top-right toe -->
+        <PathFigure StartPoint="21,15" IsClosed="True">
+            <BezierSegment Point1="18,15" Point2="18,19" Point3="21,19"/>
+            <BezierSegment Point1="24,19" Point2="24,15" Point3="21,15"/>
+        </PathFigure>
+    </PathGeometry>
+
+    <!-- ============================================================
+         Display TextBlock style
+         ============================================================ -->
+    <Style x:Key="DisplayExpressionStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily"          Value="Segoe UI, Consolas"/>
+        <Setter Property="FontSize"            Value="14"/>
+        <Setter Property="Foreground"          Value="#C0B0D8"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment"   Value="Bottom"/>
+        <Setter Property="TextTrimming"        Value="CharacterEllipsis"/>
+        <Setter Property="Margin"              Value="0,0,0,2"/>
+    </Style>
+
+    <Style x:Key="DisplayResultStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily"          Value="Segoe UI, Consolas"/>
+        <Setter Property="FontSize"            Value="40"/>
+        <Setter Property="FontWeight"          Value="Light"/>
+        <Setter Property="Foreground"          Value="{StaticResource DisplayTextBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment"   Value="Center"/>
+        <Setter Property="TextTrimming"        Value="CharacterEllipsis"/>
+    </Style>
+
+    <!-- ============================================================
+         Title / Header TextBlock
+         ============================================================ -->
+    <Style x:Key="TitleTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily"          Value="Segoe UI, Arial"/>
+        <Setter Property="FontSize"            Value="16"/>
+        <Setter Property="FontWeight"          Value="Bold"/>
+        <Setter Property="Foreground"          Value="#8050A0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment"   Value="Center"/>
+        <Setter Property="LetterSpacing"       Value="2"/>
+    </Style>
+
+    <!-- ============================================================
+         Separator line style
+         ============================================================ -->
+    <Style x:Key="CatSeparatorStyle" TargetType="Rectangle">
+        <Setter Property="Height"              Value="2"/>
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="Transparent"                        Offset="0"/>
+                    <GradientStop Color="{StaticResource CatLavenderDarkColor}" Offset="0.5"/>
+                    <GradientStop Color="Transparent"                        Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin"              Value="20,0"/>
+    </Style>
+
+</ResourceDictionary>
