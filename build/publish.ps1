@@ -12,6 +12,22 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# Validate that the .NET SDK is installed before proceeding.
+Write-Host "==> Checking for .NET SDK..." -ForegroundColor Cyan
+$dotnetVersion = & dotnet --version 2>&1
+if ($LASTEXITCODE -ne 0) {
+    Write-Error @"
+ERROR: .NET SDK not found.
+
+The .NET SDK is required to build CatCalculate.
+Please download and install it from: https://aka.ms/dotnet-download
+
+After installing, open a new terminal window and try again.
+"@
+    exit 1
+}
+Write-Host "    .NET SDK version: $dotnetVersion" -ForegroundColor Green
+
 $repoRoot   = Split-Path -Parent $PSScriptRoot
 $outputDir  = Join-Path $PSScriptRoot "output"
 
