@@ -187,5 +187,6 @@ namespace CatCalculate.Logic
             _currentValue = -_currentValue;
             ResetInputState();
         }
+
     }
 }

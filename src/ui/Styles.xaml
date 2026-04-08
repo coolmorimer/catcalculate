@@ -51,14 +51,14 @@
     </LinearGradientBrush>
 
     <!-- ============================================================
-         Drop Shadow Effect
+         Drop Shadow Effects
          ============================================================ -->
     <DropShadowEffect x:Key="SoftShadow"
-                      BlurRadius="8"
+                      BlurRadius="6"
                       ShadowDepth="2"
                       Direction="270"
                       Color="#80C4B8CC"
-                      Opacity="0.4"/>
+                      Opacity="0.35"/>
 
     <DropShadowEffect x:Key="DisplayShadow"
                       BlurRadius="12"
@@ -69,6 +69,9 @@
 
     <!-- ============================================================
          Base Button Style
+         The template binds ButtonBorder.Background to the Button's
+         Background property so that Style.Triggers in derived styles
+         can change the hover colour without duplicating the template.
          ============================================================ -->
     <Style x:Key="CatButtonBase" TargetType="Button">
         <Setter Property="FontFamily"    Value="Segoe UI, Arial"/>
@@ -76,8 +79,9 @@
         <Setter Property="FontWeight"    Value="SemiBold"/>
         <Setter Property="Foreground"    Value="{StaticResource CatNavyBrush}"/>
         <Setter Property="Cursor"        Value="Hand"/>
-        <Setter Property="Margin"        Value="5"/>
+        <Setter Property="Margin"        Value="4"/>
         <Setter Property="Effect"        Value="{StaticResource SoftShadow}"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -90,21 +94,6 @@
                                           VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="ButtonBorder"
-                                    Property="Background"
-                                    Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <Setter TargetName="ButtonBorder"
-                                    Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect BlurRadius="12"
-                                                      ShadowDepth="3"
-                                                      Direction="270"
-                                                      Color="#C4B8CC"
-                                                      Opacity="0.6"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="ButtonBorder"
                                     Property="RenderTransformOrigin"
@@ -112,7 +101,7 @@
                             <Setter TargetName="ButtonBorder"
                                     Property="RenderTransform">
                                 <Setter.Value>
-                                    <ScaleTransform ScaleX="0.96" ScaleY="0.96"/>
+                                    <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -122,24 +111,36 @@
         </Setter>
     </Style>
 
-    <!-- Number Button (digit keys 0–9, decimal) -->
+    <!-- Number Button (digit keys 0-9, decimal) -->
     <Style x:Key="NumberButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
         <Setter Property="Background" Value="{StaticResource CatCreamBrush}"/>
-        <Setter Property="Tag"        Value="{StaticResource CatPinkBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource CatPinkBrush}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
-    <!-- Operator Button (+, −, ×, ÷, %) -->
+    <!-- Operator Button (+, -, x, /) -->
     <Style x:Key="OperatorButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
         <Setter Property="Background" Value="{StaticResource CatLavenderBrush}"/>
-        <Setter Property="Tag"        Value="{StaticResource CatLavenderDarkBrush}"/>
         <Setter Property="Foreground" Value="#5A3080"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource CatLavenderDarkBrush}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
-    <!-- Function Button (C, CE, ±, backspace) -->
+    <!-- Function Button (C, CE, +/-, backspace, %) -->
     <Style x:Key="FunctionButtonStyle" TargetType="Button" BasedOn="{StaticResource CatButtonBase}">
         <Setter Property="Background" Value="{StaticResource CatPeachBrush}"/>
-        <Setter Property="Tag"        Value="{StaticResource CatPeachDarkBrush}"/>
         <Setter Property="Foreground" Value="#803020"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource CatPeachDarkBrush}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- Equals Button -->
@@ -147,16 +148,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource CatPinkColor}"    Offset="0"/>
-                    <GradientStop Color="{StaticResource EqualsBgColor}"   Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Tag">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource EqualsBgColor}"     Offset="0"/>
-                    <GradientStop Color="{StaticResource EqualsBgDarkColor}" Offset="1"/>
+                    <GradientStop Color="{StaticResource CatPinkColor}"  Offset="0"/>
+                    <GradientStop Color="{StaticResource EqualsBgColor}" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -168,14 +161,25 @@
                                   Direction="270" Color="#FF8FAF" Opacity="0.5"/>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{StaticResource EqualsBgColor}"     Offset="0"/>
+                            <GradientStop Color="{StaticResource EqualsBgDarkColor}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ============================================================
          Paw-print decorative path data (reusable geometry)
-         Single paw = central pad + 4 toe pads arranged above it
          ============================================================ -->
     <PathGeometry x:Key="PawPrintGeometry">
-        <!-- Central pad (large rounded rectangle) -->
+        <!-- Central pad -->
         <PathFigure StartPoint="12,22" IsClosed="True">
             <BezierSegment Point1="6,22"  Point2="4,28"  Point3="4,34"/>
             <BezierSegment Point1="4,40"  Point2="6,44"  Point3="12,44"/>
@@ -205,11 +209,11 @@
     </PathGeometry>
 
     <!-- ============================================================
-         Display TextBlock style
+         Display TextBlock styles
          ============================================================ -->
     <Style x:Key="DisplayExpressionStyle" TargetType="TextBlock">
         <Setter Property="FontFamily"          Value="Segoe UI, Consolas"/>
-        <Setter Property="FontSize"            Value="14"/>
+        <Setter Property="FontSize"            Value="13"/>
         <Setter Property="Foreground"          Value="#C0B0D8"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment"   Value="Bottom"/>
@@ -237,24 +241,23 @@
         <Setter Property="Foreground"          Value="#8050A0"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment"   Value="Center"/>
-
     </Style>
 
     <!-- ============================================================
          Separator line style
          ============================================================ -->
     <Style x:Key="CatSeparatorStyle" TargetType="Rectangle">
-        <Setter Property="Height"              Value="2"/>
+        <Setter Property="Height" Value="2"/>
         <Setter Property="Fill">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Transparent"                        Offset="0"/>
+                    <GradientStop Color="Transparent"                           Offset="0"/>
                     <GradientStop Color="{StaticResource CatLavenderDarkColor}" Offset="0.5"/>
-                    <GradientStop Color="Transparent"                        Offset="1"/>
+                    <GradientStop Color="Transparent"                           Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin"              Value="20,0"/>
+        <Setter Property="Margin" Value="20,0"/>
     </Style>
 
 </ResourceDictionary>

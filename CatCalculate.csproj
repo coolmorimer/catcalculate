@@ -4,12 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>CatCalculate</AssemblyName>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RootNamespace>CatCalculate</RootNamespace>
+    <AssemblyName>CatCalculate</AssemblyName>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!-- Required when cross-compiling on non-Windows hosts (e.g. CI on Linux) -->
-    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Version>1.0.0</Version>
+    <AssemblyTitle>CatCalculate — Cat-Themed Calculator</AssemblyTitle>
+    <Description>A cute cat-themed desktop calculator built with WPF.</Description>
 
     <!-- Single-file self-contained publish settings -->
     <PublishSingleFile>true</PublishSingleFile>
@@ -18,5 +20,15 @@
     <PublishReadyToRun>false</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
+
+  <!-- App.xaml lives in a subdirectory, so we must tell the SDK explicitly. -->
+  <ItemGroup>
+    <ApplicationDefinition Include="src\ui\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <!-- Prevent the SDK from also treating App.xaml as an ordinary Page. -->
+    <Page Remove="src\ui\App.xaml"/>
+  </ItemGroup>
 
 </Project>

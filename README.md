@@ -1,6 +1,6 @@
 # 🐱 CatCalculate
 
-A cute cat-themed calculator built with **WPF / .NET 8** for Windows.
+A cute, cat-themed desktop calculator built with **WPF (.NET 8)**.
 
 Features a pastel colour palette, cat ears, paw-print decorations, and a borderless rounded window.
 
@@ -8,11 +8,20 @@ Features a pastel colour palette, cat ears, paw-print decorations, and a borderl
 
 ## Features
 
-- Basic arithmetic: **+**, **−**, **×**, **÷**
-- Percentage (`%`), sign toggle (`±`), and backspace (`⌫`)
-- Chained operations (e.g. `3 + 4 × 2`)
+- Standard arithmetic: `+`, `−`, `×`, `÷`
+- Percent (`%`), sign toggle (`±`), and backspace (`⌫`)
+- Chain calculations (e.g. `5 + 3 × 2`)
+- Expression history shown above the result
 - Error handling for division by zero
-- Drag-to-move borderless window with rounded corners
+- Draggable, borderless rounded window with cat ears 🐾
+- Hover and press animations on all buttons
+- Single-file, self-contained Windows EXE — no installation needed
+
+---
+
+## Download
+
+Head to the [**Actions**](../../actions/workflows/build.yml) tab, pick the latest successful run, and download the **CatCalculate-win-x64** artifact. Extract and double-click `CatCalculate.exe`.
 
 ---
 
@@ -20,7 +29,7 @@ Features a pastel colour palette, cat ears, paw-print decorations, and a borderl
 
 ### Prerequisites
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (Windows)
+- [.NET 8 SDK](https://dotnet.microsoft.com/download) (Windows only — WPF)
 
 ### Run
 
@@ -65,15 +74,21 @@ In all cases the executable is written to **`build\output\CatCalculate.exe`**.
 ```
 catcalculate/
 ├── CatCalculate.csproj        # .NET 8 WPF project file
-├── App.xaml / App.xaml.cs     # Application entry point
 ├── src/
 │   ├── logic/
 │   │   └── Calculator.cs      # Core arithmetic logic
 │   └── ui/
+│       ├── App.xaml / .cs     # WPF application entry point
 │       ├── MainWindow.xaml    # Window layout
 │       ├── MainWindow.xaml.cs # Code-behind / event handlers
 │       └── Styles.xaml        # Cat-themed style resources
-└── build/
-    ├── publish.ps1            # PowerShell publish script
-    └── publish.cmd            # Batch wrapper (double-click)
+├── build/
+│   ├── publish.ps1            # PowerShell publish script
+│   └── publish.cmd            # Batch wrapper (double-click)
+└── .github/workflows/
+    └── build.yml              # CI: build + publish EXE on every push to main
 ```
+
+## License
+
+MIT
