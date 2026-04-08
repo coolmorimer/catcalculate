@@ -7,6 +7,19 @@ echo.
 echo === CatCalculate Build Script ===
 echo.
 
+REM Validate that the .NET SDK is installed before proceeding.
+where dotnet >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo ERROR: .NET SDK not found.
+    echo.
+    echo The .NET SDK is required to build CatCalculate.
+    echo Please download and install it from: https://aka.ms/dotnet-download
+    echo.
+    echo After installing, open a new terminal window and try again.
+    pause
+    exit /b 1
+)
+
 powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0publish.ps1"
 
 if %ERRORLEVEL% NEQ 0 (
