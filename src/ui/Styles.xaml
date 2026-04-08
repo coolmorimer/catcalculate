@@ -237,7 +237,7 @@
         <Setter Property="Foreground"          Value="#8050A0"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment"   Value="Center"/>
-        <Setter Property="LetterSpacing"       Value="2"/>
+
     </Style>
 
     <!-- ============================================================

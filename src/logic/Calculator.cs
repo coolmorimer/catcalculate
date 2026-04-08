@@ -172,8 +172,16 @@ namespace CatCalculate.Logic
         }
 
         /// <summary>
-        /// Toggles the sign of the current value (positive ↔ negative).
+        /// Directly sets the current value (used by the UI backspace operation).
         /// </summary>
+        public void SetCurrentValue(double value)
+        {
+            _currentValue = value;
+            _isNewInput = false;
+            _hasDecimal = value != Math.Floor(value);
+            _decimalPlaces = 0;
+        }
+
         public void ToggleSign()
         {
             _currentValue = -_currentValue;
